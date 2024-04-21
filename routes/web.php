@@ -10,6 +10,7 @@ use App\Http\Controllers\Setting;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\UserManagementController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
@@ -158,4 +159,10 @@ Route::group(['namespace' => 'App\Http\Controllers'],function()
         Route::get('invoice/settings/bank/page', 'invoiceSettingsBank')->middleware('auth')->name('invoice/settings/bank/page'); // invoice/settings/bank/page
     });
 
-    // ----------------------- accounts ----------------------------
+    // ----------------------- accounts ----------------------------//
+    Route::controller(AccountsController::class)->group(function () {
+        Route::get('account/fees/collections/page', 'index')->middleware('auth')->name('account/fees/collections/page'); // account/fees/collections/page
+        Route::get('add/fees/collection/page', 'addFeesCollection')->middleware('auth')->name('add/fees/collection/page'); // add/fees/collection
+        Route::post('fees/collection/save', 'saveRecord')->middleware('auth')->name('fees/collection/save'); // fees/collection/save
+    });
+});
