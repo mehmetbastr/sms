@@ -26,13 +26,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/** for side bar menu active */
-function set_active( $route ) {
+/** for sidebar menu active */
+
+function set_active( $route ): string {
     if( is_array( $route ) ){
         return in_array(Request::path(), $route) ? 'active' : '';
     }
     return Request::path() == $route ? 'active' : '';
 }
+
 
 Route::get('/', function () {
     return view('auth.login');
@@ -141,7 +143,7 @@ Route::group(['namespace' => 'App\Http\Controllers'],function()
 
     // ----------------------- invoice -----------------------------//
     Route::controller(InvoiceController::class)->group(function () {
-        Route::get('invoice/list/page', 'invoiceList')->middleware('auth')->name('invoice/list/page'); // subjeinvoicect/list/page
+        Route::get('invoice/list/page', 'invoiceList')->middleware('auth')->name('invoice/list/page'); // invoice/list/page
         Route::get('invoice/paid/page', 'invoicePaid')->middleware('auth')->name('invoice/paid/page'); // invoice/paid/page
         Route::get('invoice/overdue/page', 'invoiceOverdue')->middleware('auth')->name('invoice/overdue/page'); // invoice/overdue/page
         Route::get('invoice/draft/page', 'invoiceDraft')->middleware('auth')->name('invoice/draft/page'); // invoice/draft/page
