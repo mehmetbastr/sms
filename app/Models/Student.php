@@ -28,6 +28,11 @@ class Student extends Model
         // 'upload'
     ];
 
+    public function getAvatarPath()
+    {
+        return $this->upload;
+    }
+
         protected static function boot()
     {
         parent::boot();

@@ -31,8 +31,11 @@ trait DrawsBoxes
                 ->toArray()
         );
 
-        $topBorder = str_repeat('─', $width - mb_strwidth($this->stripEscapeSequences($title)));
-        $this->line("{$this->{$color}(' ┌')} {$title} {$this->{$color}($topBorder.'┐')}");
+        $titleLength = mb_strwidth($this->stripEscapeSequences($title));
+        $titleLabel = $titleLength > 0 ? " {$title} " : '';
+        $topBorder = str_repeat('─', $width - $titleLength + ($titleLength > 0 ? 0 : 2));
+
+        $this->line("{$this->{$color}(' ┌')}{$titleLabel}{$this->{$color}($topBorder.'┐')}");
 
         $bodyLines->each(function ($line) use ($width, $color) {
             $this->line("{$this->{$color}(' │')} {$this->pad($line, $width)} {$this->{$color}('│')}");
@@ -83,8 +86,13 @@ trait DrawsBoxes
      */
     protected function stripEscapeSequences(string $text): string
     {
+        // Strip ANSI escape sequences.
         $text = preg_replace("/\e[^m]*m/", '', $text);
 
+        // Strip Symfony named style tags.
+        $text = preg_replace("/<(info|comment|question|error)>(.*?)<\/\\1>/", '$2', $text);
+
+        // Strip Symfony inline style tags.
         return preg_replace("/<(?:(?:[fb]g|options)=[a-z,;]+)+>(.*?)<\/>/i", '$1', $text);
     }
 }
