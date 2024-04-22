@@ -23,4 +23,9 @@ class Student extends Model
         'phone_number',
         'upload',
     ];
+
+    public function getAvatarPath()
+    {
+        return $this->upload;
+    }
 }
