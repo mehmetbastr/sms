@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use DB;
+
 use Illuminate\Http\Request;
 use App\Models\Department;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class DepartmentController extends Controller
 {
@@ -124,7 +126,7 @@ class DepartmentController extends Controller
             Toastr::success('Has been add successfully :)','Success');
             return redirect()->back();
         } catch(\Exception $e) {
-            \Log::info($e);
+            Log::info($e);
             DB::rollback();
             Toastr::error('fail, Add new record  :)','Error');
             return redirect()->back();
@@ -150,7 +152,7 @@ class DepartmentController extends Controller
             return redirect()->back();
            
         } catch(\Exception $e) {
-            \Log::info($e);
+            Log::info($e);
             DB::rollback();
             Toastr::error('Fail, update record:)','Error');
             return redirect()->back();
@@ -169,7 +171,7 @@ class DepartmentController extends Controller
             return redirect()->back();
     
         } catch(\Exception $e) {
-            \Log::info($e);
+            Log::info($e);
             DB::rollback();
             Toastr::error('Department deleted fail :)','Error');
             return redirect()->back();

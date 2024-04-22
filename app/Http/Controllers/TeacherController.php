@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
+
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Hash;
 use Carbon\Carbon;
 use App\Models\User;
@@ -71,7 +73,7 @@ class TeacherController extends Controller
             Toastr::success('Has been add successfully :)','Success');
             return redirect()->back();
         } catch(\Exception $e) {
-            \Log::info($e);
+            Log::info($e);
             DB::rollback();
             Toastr::error('fail, Add new record  :)','Error');
             return redirect()->back();
@@ -114,7 +116,7 @@ class TeacherController extends Controller
            
         } catch(\Exception $e) {
             DB::rollback();
-            \Log::info($e);
+            Log::info($e);
             Toastr::error('fail, update record  :)','Error');
             return redirect()->back();
         }
@@ -132,7 +134,7 @@ class TeacherController extends Controller
             return redirect()->back();
         } catch(\Exception $e) {
             DB::rollback();
-            \Log::info($e);
+            Log::info($e);
             Toastr::error('Deleted record fail :)','Error');
             return redirect()->back();
         }

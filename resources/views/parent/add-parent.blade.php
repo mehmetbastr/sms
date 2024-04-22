@@ -84,6 +84,17 @@
                                     </div>
                                     <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms">
+                                            <label>Roll </label>
+                                            <input class="form-control @error('roll') is-invalid @enderror" type="text" name="roll" placeholder="Enter Roll Number" value="{{ old('roll') }}">
+                                            @error('roll')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group local-forms">
                                             <label>Blood Group <span class="login-danger">*</span></label>
                                             <select class="form-control select @error('blood_group') is-invalid @enderror" name="blood_group">
                                                 <option selected disabled>Please Select Group </option>
@@ -92,6 +103,22 @@
                                                 <option value="O+" {{ old('blood_group') == 'O+' ? "selected" :""}}>O+</option>
                                             </select>
                                             @error('blood_group')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group local-forms">
+                                            <label>Religion <span class="login-danger">*</span></label>
+                                            <select class="form-control select @error('religion') is-invalid @enderror" name="religion">
+                                                <option selected disabled>Please Select Religion </option>
+                                                <option value="Hindu" {{ old('religion') == 'Hindu' ? "selected" :""}}>Hindu</option>
+                                                <option value="Christian" {{ old('religion') == 'Christian' ? "selected" :""}}>Christian</option>
+                                                <option value="Others" {{ old('religion') == 'Others' ? "selected" :""}}>Others</option>
+                                            </select>
+                                            @error('religion')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
@@ -119,6 +146,33 @@
                                                 <option value="10" {{ old('class') == '10' ? "selected" :""}}>10</option>
                                             </select>
                                             @error('class')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group local-forms">
+                                            <label>Section <span class="login-danger">*</span></label>
+                                            <select class="form-control select @error('section') is-invalid @enderror" name="section">
+                                                <option selected disabled>Please Select Section </option>
+                                                <option value="A" {{ old('section') == 'A' ? "selected" :""}}>A</option>
+                                                <option value="B" {{ old('section') == 'B' ? "selected" :""}}>B</option>
+                                                <option value="C" {{ old('section') == 'C' ? "selected" :""}}>C</option>
+                                            </select>
+                                            @error('section')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group local-forms">
+                                            <label>Admission ID </label>
+                                            <input class="form-control @error('admission_id') is-invalid @enderror" type="text" name="admission_id" placeholder="Enter Admission ID" value="{{ old('admission_id') }}">
+                                            @error('admission_id')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>

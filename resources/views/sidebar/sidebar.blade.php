@@ -1,3 +1,8 @@
+@php
+    $role = Session::get('role_name');
+@endphp
+
+
 <div class="sidebar" id="sidebar">
     <div class="sidebar-inner slimscroll">
         <div id="sidebar-menu" class="sidebar-menu">
@@ -18,9 +23,16 @@
                         <span class="menu-arrow"></span>
                     </a>
                     <ul>
-                        <li><a href="{{ route('home') }}" class="{{set_active(['home'])}}">Admin Dashboard</a></li>
-                        <li><a href="{{ route('teacher/dashboard') }}" class="{{set_active(['teacher/dashboard'])}}">Teacher Dashboard</a></li>
-                        <li><a href="{{ route('student/dashboard') }}" class="{{set_active(['student/dashboard'])}}">Student Dashboard</a></li>
+                        {{-- @if($role === 'Teachers') --}}
+                            <li><a href="{{ route('teacher/dashboard') }}" class="{{set_active(['teacher/dashboard'])}}">Teacher Dashboard</a></li>
+                        {{-- @elseif ($role === 'Student') --}}
+                            <li><a href="{{ route('student/dashboard') }}" class="{{set_active(['student/dashboard'])}}">Student Dashboard</a></li>
+                        {{-- @elseif ($role === 'Parent') --}}
+                            <li><a href="{{ route('parent/dashboard') }}" class="{{set_active(['student/dashboard'])}}">Parent Dashboard</a></li>
+                        {{-- @elseif ($role === 'Admin' || $role === 'Super Admin') --}}
+                            <li><a href="{{ route('home') }}" class="{{set_active(['home'])}}">Admin Dashboard</a></li>
+                        {{-- @endif --}}
+                        
                     </ul>
                 </li>
                 @if (Session::get('role_name') === 'Admin' || Session::get('role_name') === 'Super Admin')

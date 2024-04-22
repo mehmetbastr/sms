@@ -44,4 +44,9 @@ class HomeController extends Controller
     {
         return view('dashboard.student_dashboard');
     }
+
+    public function parentDashboardIndex()
+    {
+        return view('dashboard.parent_dashboard');
+    }
 }

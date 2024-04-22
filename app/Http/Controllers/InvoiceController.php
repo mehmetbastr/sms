@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
+
 use App\Models\User;
 use App\Models\InvoiceDetails;
 use App\Models\InvoiceDiscount;
@@ -13,6 +13,8 @@ use App\Models\InvoicePaymentDetails;
 use App\Models\InvoiceAdditionalCharges;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class InvoiceController extends Controller
 {
@@ -175,7 +177,7 @@ class InvoiceController extends Controller
             return redirect()->back();
         } catch(\Exception $e) {
             DB::rollback();
-            \Log::info($e);
+            Log::info($e);
             Toastr::error('fail, Add new student  :)','Error');
             return redirect()->back();
         }
@@ -282,7 +284,7 @@ class InvoiceController extends Controller
             Toastr::success('Has been updated successfully :)','Success');
             return redirect()->back();
         } catch(\Exception $e) {
-            \Log::info($e);
+            Log::info($e);
             Toastr::error('fail, update record  :)','Error');
             return redirect()->back();
         }

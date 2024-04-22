@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\ParentController;
 use App\Http\Controllers\Setting;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
@@ -78,6 +79,7 @@ Route::group(['namespace' => 'App\Http\Controllers'],function()
         Route::get('user/profile/page', 'userProfile')->middleware('auth')->name('user/profile/page');
         Route::get('teacher/dashboard', 'teacherDashboardIndex')->middleware('auth')->name('teacher/dashboard');
         Route::get('student/dashboard', 'studentDashboardIndex')->middleware('auth')->name('student/dashboard');
+        Route::get('parent/dashboard', 'parentDashboardIndex')->middleware('auth')->name('parent/dashboard');
     });
 
     // ----------------------------- user controller ---------------------//
@@ -106,6 +108,17 @@ Route::group(['namespace' => 'App\Http\Controllers'],function()
         Route::post('student/update', 'studentUpdate')->name('student/update'); // update record student
         Route::post('student/delete', 'studentDelete')->name('student/delete'); // delete record student
         Route::get('student/profile/{id}', 'studentProfile')->middleware('auth'); // profile student
+    });
+
+    Route::controller(ParentController::class)->group(function () {
+        Route::get('parent/list', 'parent')->middleware('auth')->name('parent/list'); // list student
+        Route::get('parent/grid', 'parentGrid')->middleware('auth')->name('parent/grid'); // grid student
+        Route::get('parent/add/page', 'parentAdd')->middleware('auth')->name('parent/add/page'); // page student
+        Route::post('parent/add/save', 'parentSave')->name('parent/add/save'); // save record student
+        Route::get('parent/edit/{id}', 'parentEdit'); // view for edit
+        Route::post('parent/update', 'parentUpdate')->name('parent/update'); // update record student
+        Route::post('parent/delete', 'parentDelete')->name('parent/delete'); // delete record student
+        Route::get('parent/profile/{id}', 'parentProfile')->middleware('auth'); // profile student
     });
 
     // ------------------------ teacher -------------------------------//

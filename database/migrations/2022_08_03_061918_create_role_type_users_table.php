@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class CreateRoleTypeUsersTable extends Migration
 {
@@ -25,6 +26,7 @@ class CreateRoleTypeUsersTable extends Migration
             ['role_type' => 'Normal User'],
             ['role_type' => 'Teachers'],
             ['role_type' => 'Student'],
+            ['role_type' => 'Parent'],
             ['role_type' => 'Staff'],
             ['role_type' => 'Client'],
         ]);

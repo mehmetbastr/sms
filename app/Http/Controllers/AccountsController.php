@@ -7,6 +7,8 @@ use App\Models\FeesType;
 use App\Models\User;
 use App\Models\FeesInformation;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class AccountsController extends Controller
 {
@@ -53,7 +55,7 @@ class AccountsController extends Controller
             Toastr::success('Has been add successfully :)','Success');
             return redirect()->back();
         } catch(\Exception $e) {
-            \Log::info($e);
+            Log::info($e);
             DB::rollback();
             Toastr::error('fail, Add new record  :)','Error');
             return redirect()->back();
